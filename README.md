@@ -31,7 +31,7 @@
 
 ## 常用函数
 
-```
+```js
 {
   clone,
   compose,
