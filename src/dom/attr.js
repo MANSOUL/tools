@@ -5,7 +5,7 @@
  * @param  {String} attrValue
  * @return {HTMLElement | String}          
  */
-function attr($ele, attrName, attrValue) {
+export function attr($ele, attrName, attrValue) {
   if (attrValue) {
     $ele.setAttribute(attrName, attrValue);
     return $ele;
@@ -17,5 +17,3 @@ function attr($ele, attrName, attrValue) {
     return $ele.getAttribute(attrName);
   }
 }
-
-export const attr = attr;

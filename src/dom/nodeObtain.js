@@ -4,7 +4,7 @@
  * @param  {String} matchStr 
  * @return {HTMLElement | Null}         
  */
-function parent($ele, matchStr) {
+export function parent($ele, matchStr) {
   let $currentEle = $ele;
   while ($currentEle.tagName.toLowerCase() !== 'html') {
     if ($currentEle.matches(matchStr)) {
@@ -20,7 +20,7 @@ function parent($ele, matchStr) {
  * @param  {HTMLElement} $ele 
  * @return {Number}      
  */
-function elementIndex($ele) {
+export function elementIndex($ele) {
   let $parent = $ele.parentElement;
   for (let i = 0; i < $parent.children.length; i++) {
     if ($ele === $parent.children[i]) {
@@ -35,7 +35,7 @@ function elementIndex($ele) {
  * @param  {HTMLElement}   $ele 
  * @return {HTMLElement}      
  */
-function next($ele) {
+export function next($ele) {
   return $ele.nextElementSibling;
 }
 
@@ -44,7 +44,7 @@ function next($ele) {
  * @param  {HTMLElement}   $ele 
  * @return {HTMLElement}      
  */
-function prev($ele) {
+export function prev($ele) {
   return $ele.previousElementSibling;
 }
 
@@ -53,7 +53,7 @@ function prev($ele) {
  * @param  {HTMLElement}   $ele 
  * @return {Array}      
  */
-function siblings($ele) {
+export function siblings($ele) {
   let arr = [];
   let $eles = $ele.parentElement.children;
   for (let i = 0; i < $eles.length; i++) {
@@ -63,9 +63,3 @@ function siblings($ele) {
   }
   return arr;
 }
-
-export const parent = parent;
-export const elementIndex = elementIndex;
-export const next = next;
-export const prev = prev;
-export const siblings = siblings;

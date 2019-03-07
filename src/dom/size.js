@@ -1,10 +1,15 @@
-function width($ele) {
+/**
+ * 获取元素宽度
+ * @param {HTMLElement} $ele 
+ */
+export function width($ele) {
   return $ele.offsetWidth;
 }
 
-function height($ele) {
+/**
+ * 获取元素高度
+ * @param {HTMLElement} $ele 
+ */
+export function height($ele) {
   return $ele.offsetHeight;
 }
-
-export const width = width;
-export const height = height;

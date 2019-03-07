@@ -4,7 +4,7 @@
  * @param  {String} content
  * @return {HTMLELement}
  */
-function text($ele, content) {
+export function text($ele, content) {
   $ele.textContent = content;
   return $ele;
 }
@@ -15,10 +15,7 @@ function text($ele, content) {
  * @param  {String} htmlString
  * @return {HTMLELement}
  */
-function html($ele, htmlString) {
+export function html($ele, htmlString) {
   $ele.innerHTML = htmlString;
   return $ele;
 }
-
-export const text = text;
-export const html = html;

@@ -6,7 +6,7 @@
  * @param  {String} match   
  * @return {Function}   用于取消此事件监听的函数     
  */
-function on($ele, type, handler, match) {
+export function on($ele, type, handler, match) {
   const eventListener = function eventListener(e) {
     let $target = e.target;
     let $currentTarget = e.currentTarget;
@@ -24,5 +24,3 @@ function on($ele, type, handler, match) {
     $ele.removeEventListener(type, eventListener);
   };
 }
-
-export const on = on;

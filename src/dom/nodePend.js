@@ -4,7 +4,7 @@
  * @param  {HTMLELement | String} child 
  * @return {HTMLELement}       
  */
-function append($ele, child) {
+export function append($ele, child) {
   if (typeof child === 'string') {
     $ele.insertAdjacentHTML('beforeEnd', child);
   } else {
@@ -19,7 +19,7 @@ function append($ele, child) {
  * @param  {HTMLELement | String} child 
  * @return {HTMLELement}       
  */
-function prepend($ele, child) {
+export function prepend($ele, child) {
   if (typeof child === 'string') {
     $ele.insertAdjacentHTML('afterBegin', child);
   } else {
@@ -34,7 +34,7 @@ function prepend($ele, child) {
  * @param {HTMLElement} $target 
  * @return {HTMLElement}
  */
-function insertBefore($ele, $target) {
+export function insertBefore($ele, $target) {
   $target.parentElement.insertBefore($ele, $target);
   return $ele;
 }
@@ -43,12 +43,7 @@ function insertBefore($ele, $target) {
  * 删除节点
  * @return {HTMLELement}       
  */
-function remove($ele) {
+export function remove($ele) {
   $ele.parentElement.removeChild($ele);
   return $ele;
 }
-
-export const append = append;
-export const prepend = prepend;
-export const insertBefore = insertBefore;
-export const remove = remove;

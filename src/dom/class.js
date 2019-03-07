@@ -4,7 +4,7 @@
  * @param  {String}  className 
  * @return {Boolean}           
  */
-function hasClass($ele, className) {
+export function hasClass($ele, className) {
   return $ele.classList.contains(className);
 }
 
@@ -13,7 +13,7 @@ function hasClass($ele, className) {
  * @param {HTMLElement} $ele      
  * @param {String} className 
  */
-function addClass($ele, className) {
+export function addClass($ele, className) {
   $ele.classList.add(className);
   return $ele;
 }
@@ -24,7 +24,7 @@ function addClass($ele, className) {
  * @param  {String} className
  * @return {[HTMLElement | NodeList]}          
  */
-function removeClass($ele, className) {
+export function removeClass($ele, className) {
   if ($ele.length) {
     map($ele, function ($element) {
       $element.classList.remove(className);
@@ -41,7 +41,7 @@ function removeClass($ele, className) {
  * @param  {String}  className 
  * @return {HTMLElement}    
  */
-function toggleClass($ele, className) {
+export function toggleClass($ele, className) {
   if (hasClass($ele)) {
     removeClass($ele, className);
   } else {
@@ -49,8 +49,3 @@ function toggleClass($ele, className) {
   }
   return $ele;
 }
-
-export const hasClass = hasClass;
-export const removeClass = removeClass;
-export const addClass = addClass;
-export const toggleClass = toggleClass;

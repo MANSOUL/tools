@@ -3,7 +3,7 @@
  * @param  {HTMLElement} $ele 
  * @return {Object}
  */
-function offset($ele) {
+export function offset($ele) {
   let boundingBox = $ele.getBoundingClientRect();
   return {
     top: window.pageYOffset + boundingBox.top,
@@ -17,12 +17,9 @@ function offset($ele) {
  * @param  {HTMLElement} $ele 
  * @return {Object}
  */
-function position($ele) {
+export function position($ele) {
   return {
     top: $ele.offsetTop,
     left: $ele.offsetLeft
   };
 }
-
-export const offset = offset;
-export const position = position;
