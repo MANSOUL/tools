@@ -36,8 +36,26 @@
   clone,
   compose,
   unary,
-  curry
+  curry,
+  map
 }
+```
+
+## 浏览器相关
+
+```js
+{
+  setCookie,
+  removeCookie,
+  getCookie
+}
+```
+
+## 构建
+
+```shell
+$ npm i
+$ npm run build
 ```
 
 ## 浏览器使用
