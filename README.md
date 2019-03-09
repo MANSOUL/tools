@@ -25,7 +25,8 @@
   offset,
   position,
   width,
-  height
+  height,
+  value
 }
 ```
 

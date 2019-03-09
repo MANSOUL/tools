@@ -7,6 +7,7 @@ import { parent, elementIndex, next, prev, siblings } from "./nodeObtain";
 import { append, prepend, insertBefore, remove } from "./nodePend";
 import { offset, position } from "./position";
 import { width, height } from "./size";
+import { value } from './value';
 
 export default {
   attr,
@@ -30,5 +31,6 @@ export default {
   offset,
   position,
   width,
-  height
+  height,
+  value
 };
