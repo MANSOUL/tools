@@ -38,7 +38,9 @@
   compose,
   unary,
   curry,
-  map
+  map,
+  sort,
+  sortBy
 }
 ```
 
