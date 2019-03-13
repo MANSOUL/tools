@@ -1,7 +1,8 @@
+import map from '../function/map';
 const nodeNames = ['input', 'textarea', 'select'];
 
 function isValidElement($ele) {
-  if (nodeNames.indexOf($ele.nodeName.toLowerCase()) === -1) {
+  if (!$ele.nodeName || nodeNames.indexOf($ele.nodeName.toLowerCase()) === -1) {
     return false;
   }
   return true;
@@ -15,16 +16,45 @@ function plainValue($ele, val) {
   return $ele.value;
 }
 
-function selectValue($ele, val) {
-
-}
-
 function checkboxValue($ele, value) {
-
+  const name = $ele.name;
+  const $eles = document.querySelectorAll(`input[name=${name}]`);
+  if (value) {
+    value = Array.isArray(value) ? value : [value];
+    map($eles, ($element) => {
+      if (value.indexOf($element.value) !== -1) {
+        $element.checked = true;
+      }
+    });
+    return $eles;
+  }
+  let vs = [];
+  map($eles, ($element) => {
+    if ($element.checked) {
+      vs.push($element.value);
+    }
+  });
+  return vs;
 }
 
 function radioValue($ele, value) {
-
+  const name = $ele.name;
+  const $eles = document.querySelectorAll(`input[name=${name}]`);
+  if (value) {
+    map($eles, ($element) => {
+      if (value === $element.value) {
+        $element.checked = true;
+      }
+    });
+    return $eles;
+  }
+  let v = null;
+  map($eles, ($element) => {
+    if ($element.checked) {
+      v = $element.value;
+    }
+  });
+  return v;
 }
 
 
@@ -53,7 +83,7 @@ export function value($ele, val) {
     case 'textarea':
       return plainValue($ele, val);
     case 'select':
-      return selectValue($ele, val);
+      return plainValue($ele, val);
   }
   return $ele;
 }

@@ -25,7 +25,8 @@
   offset,
   position,
   width,
-  height
+  height,
+  value
 }
 ```
 
@@ -40,6 +41,8 @@
   map,
   find,
   pick
+  sort,
+  sortBy
 }
 ```
 
