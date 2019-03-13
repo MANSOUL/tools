@@ -37,7 +37,9 @@
   compose,
   unary,
   curry,
-  map
+  map,
+  find,
+  pick
 }
 ```
 
