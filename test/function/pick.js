@@ -8,7 +8,7 @@ test('Assertions with pick.', (assert) => {
     c: 3
   };
 
-  assert.equal(pick(obj, 'a', 'c').toString(), ({ a: 1, c: 3 }).toString(), 'pick a, c from {a: 1, b: 2, c: 3}');
+  assert.deepEqual(pick(obj, 'a', 'c'), { a: 1, c: 3 }, 'pick a, c from {a: 1, b: 2, c: 3}');
 
   assert.end();
 });
