@@ -42,7 +42,8 @@
   find,
   pick
   sort,
-  sortBy
+  sortBy,
+  type
 }
 ```
 
