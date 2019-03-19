@@ -4,3 +4,4 @@ import './unary';
 import './pick';
 import './find';
 import './type';
+import './flat';

@@ -43,7 +43,8 @@
   pick
   sort,
   sortBy,
-  type
+  type,
+  flat
 }
 ```
 
