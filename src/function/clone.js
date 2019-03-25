@@ -1,3 +1,4 @@
+import type from './type';
 
 /**
  * 判断给定参数o的类型是否为t
@@ -5,7 +6,7 @@
  * @param {String} t 
  */
 function isTypeOf(o, t) {
-  return Object.prototype.toString.call(o).slice(8, -1).toLowerCase() === t;
+  return type(o) === t;
 }
 
 /**
