@@ -10,45 +10,73 @@ function isTypeOf(o, t) {
 }
 
 /**
- * 广度优先深clone
- * @param {Any} obj 
+ * 使用数组解决循环引用
+ * @param {Array} array 
+ * @param {Object} item 
  */
-function bfsClone(obj) {
-  let originQueue = [obj],
-    copyObj = isTypeOf(obj, 'array') ? [] : {},
-    copyQueue = [copyObj];
-
-  while (originQueue.length > 0) {
-    let originItem = originQueue.shift(),
-      copyItem = copyQueue.shift();
-
-    if (isTypeOf(originItem, 'array') || isTypeOf(originItem, 'object')) {
-      for (let key in originItem) {
-        let item = originItem[key];
-        if (isTypeOf(item, 'array')) {
-          copyItem[key] = [];
-          originQueue.push(item);
-          copyQueue.push(copyItem[key]);
-        } else if (isTypeOf(item, 'object')) {
-          copyItem[key] = {};
-          originQueue.push(item);
-          copyQueue.push(copyItem[key]);
-        } else if (isTypeOf(item, 'function')) {
-          copyItem[key] = eval(`(${item.toString()})`);
-        } else {
-          copyItem[key] = item;
-        }
-      }
-    } else if (isTypeOf(originItem, 'function')) {
-      copyObj = eval(`(${originItem.toString()})`);
-    } else {
-      copyObj = originItem;
+function find(array, item) {
+  for (let index = 0; index < array.length; index++) {
+    const element = array[index];
+    if (element.source === item) {
+      return element.target;
     }
   }
-  return copyObj;
+  return null;
 }
 
-function dfsClone(obj) {
+/**
+ * 深克隆
+ * @param {Object} x 
+ */
+function bfsClone(x, uniqueList = []) {
+  const root = Array.isArray(x) ? [] : {};
+  const loopList = [{
+    parent: root,
+    key: undefined,
+    data: x
+  }];
+  uniqueList.push({
+    source: x,
+    target: root
+  });
+  while (loopList.length) {
+    let node = loopList.pop();
+    let parent = node.parent;
+    let key = node.key;
+    let data = node.data;
+    let res = parent;
+    if (key !== undefined) {
+      res = parent[key] = Array.isArray(data) ? [] : {};
+    }
+    for (let k in data) {
+      if (Object.prototype.hasOwnProperty.call(data, k)) {
+        let v = data[k];
+        if (typeof v === 'object') {
+          let t = find(uniqueList, v);
+          if (t) {
+            res[k] = t;
+          } else {
+            loopList.push({
+              parent: res,
+              key: k,
+              data: v
+            });
+            uniqueList.push({
+              source: v,
+              target: res
+            });
+          }
+        } else {
+          res[k] = v
+        }
+      }
+    }
+  }
+  return root;
+}
+
+function dfsClone(obj, uniqueList) {
+  uniqueList = uniqueList || [];
   if (!isTypeOf(obj, 'array') && !isTypeOf(obj, 'object') && !isTypeOf(obj, 'function')) {
     return obj;
   }
@@ -56,11 +84,20 @@ function dfsClone(obj) {
     return eval(`(${obj.toString()})`);
   }
   let copyObj = isTypeOf(obj, 'array') ? [] : {};
+  let t = find(uniqueList, obj);
+  if (t) {
+    return t;
+  }
+  uniqueList.push({
+    source: obj,
+    target: copyObj
+  });
   for (let key in obj) {
     let item = obj[key];
-    copyObj[key] = dfsClone(item);
+    copyObj[key] = dfsClone(item, uniqueList);
   }
   return copyObj;
 }
 
 export default bfsClone;
+export const dfsClone = dfsClone;
